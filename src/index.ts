@@ -18,6 +18,7 @@ export default (app: Probot) => {
     );
 
     if (branch === repository.default_branch) return;
+    if (branch.startsWith("temp") || branch.startsWith("branchstack")) return;
 
     const { data: prs } = await context.octokit.pulls.list({
       owner: repository.owner.login,
